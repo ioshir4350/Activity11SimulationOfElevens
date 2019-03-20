@@ -126,7 +126,19 @@ public class ElevensBoard extends Board {
 	 */
 	public boolean playIfPossible() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 11 *** */
-		return false; // REPLACE !
+
+		List<Integer> cIndexes = cardIndexes();
+		if(containsJQK(cIndexes)== true){
+			playJQKIfPossible();
+			return true;
+		}
+		else if (containsPairSum11(cIndexes) == true){
+			playPairSum11IfPossible();
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 
 	/**
@@ -137,7 +149,13 @@ public class ElevensBoard extends Board {
 	 */
 	private boolean playPairSum11IfPossible() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 11 *** */
-		 return false; // REPLACE !
+		List<Integer> cIndexes = cardIndexes();
+		if (containsPairSum11(cIndexes) == true || playPairSum11IfPossible() ) {
+			replaceSelectedCards(cIndexes);
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/**
@@ -148,6 +166,13 @@ public class ElevensBoard extends Board {
 	 */
 	private boolean playJQKIfPossible() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 11 *** */
-		return false; // REPLACE !
+		List<Integer> cIndexes = cardIndexes();
+		if(containsJQK(cIndexes)== true || playJQKIfPossible()){
+			replaceSelectedCards(cIndexes);
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 }
